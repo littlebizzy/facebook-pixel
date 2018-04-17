@@ -3,6 +3,9 @@
 // Subpackage namespace
 namespace LittleBizzy\FacebookPixel\Core;
 
+// Dependencies
+use LittleBizzy\FacebookPixel\Admin;
+
 /**
  * Core class
  *
@@ -50,13 +53,21 @@ final class Core {
 	 */
 	private function __construct($plugin) {
 
-		/* // Exit if the context is not the frontend area
-		if (is_admin() ||
-			(defined('DOING_CRON') && DOING_CRON) ||
+		// Avoid some contexts
+		if ((defined('DOING_CRON') && DOING_CRON) ||
 			(defined('DOING_AJAX') && DOING_AJAX) ||
 			(defined('XMLRPC_REQUEST') && XMLRPC_REQUEST)) {
 			return;
-		} */
+		}
+
+		// Admin area
+		if (is_admin()) {
+			new Admin\Admin($plugin);
+
+		// Front
+		} else {
+			new Front($plugin);
+		}
 	}
 
 
