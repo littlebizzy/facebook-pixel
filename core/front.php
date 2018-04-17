@@ -1,5 +1,8 @@
 <?php
 
+// Subpackage namespace
+namespace LittleBizzy\FacebookPixel\Core;
+
 /**
  * Facebook Pixel - Front class
  *
@@ -12,6 +15,13 @@ class Front {
 
 	// Properties
 	// ---------------------------------------------------------------------------------------------------
+
+
+
+	/**
+	 * Settings object
+	 */
+	private $settings;
 
 
 
@@ -37,22 +47,36 @@ class Front {
 		if (empty($settings) || !is_array($settings) || empty($settings['facebook-pixel-id']))
 			return;
 
-		// Decide if track logged users
-		if (empty($settings['track-logged']) || 'on' != 'track-logged') {
-			$user = wp_get_current_user()
-			if (!empty($user->ID))
-				return;
-		}
+		// Copy data
+		$this->settings = $settings;
 
-		// Footer hook
-		$this->facebookPixelId = $settings['facebook-pixel-id'];
-		add_action('wp_footer', [$this, 'code'], PHP_INT_MAX);
+		// Init hook
+		add_action('init', [&$this, 'init']);
 	}
 
 
 
 	// WP Hooks
 	// ---------------------------------------------------------------------------------------------------
+
+
+
+	/**
+	 * WP Users module started
+	 */
+	public function init() {
+
+		// Decide if track logged users
+		if (empty($this->settings['track-logged']) || 'on' != $this->settings['track-logged']) {
+			$user = wp_get_current_user();
+			if (!empty($user->ID))
+				return;
+		}
+
+		// Footer hook
+		$this->facebookPixelId = $this->settings['facebook-pixel-id'];
+		add_action('wp_footer', [$this, 'code'], PHP_INT_MAX);
+	}
 
 
 

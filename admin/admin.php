@@ -1,5 +1,8 @@
 <?php
 
+// Subpackage namespace
+namespace LittleBizzy\FacebookPixel\Admin;
+
 /**
  * Facebook Pixel - Admin class
  *
@@ -107,7 +110,7 @@ class Admin {
 
 				<input type="hidden" name="<?php echo $this->plugin->prefix; ?>-nonce" value="<?php echo wp_create_nonce($this->plugin->file); ?>" />
 
-				<p style="margin-bottom: 25px;"><label for="tx-tracking-code" style="display: block; float: left; width: 200px; padding-top: 3px;"><strong style="font-size: 1.1em;">GA Tracking Code</strong></label><input type="text" name="tx-tracking-code" id="tx-tracking-code" value="<?php echo empty($settings['facebook-pixel-id'])? '' : esc_attr($settings['facebook-pixel-id']); ?>" placeholder="Your Facebook Pixel Id" /></p>
+				<p style="margin-bottom: 25px;"><label for="tx-tracking-code" style="display: block; float: left; width: 200px; padding-top: 3px;"><strong style="font-size: 1.1em;">Facebook Pixel Id</strong></label><input type="text" name="tx-tracking-code" id="tx-tracking-code" value="<?php echo empty($settings['facebook-pixel-id'])? '' : esc_attr($settings['facebook-pixel-id']); ?>" placeholder="Your Facebook Pixel Id" /></p>
 
 				<p style="margin-bottom: 35px;"><label for="ck-track-logged" style="display: block; float: left; width: 200px;"><strong style="font-size: 1.1em;">Track logged in users</strong></label><input type="checkbox" name="ck-track-logged" id="ck-track-logged" value="on" <?php echo (!empty($settings['track-logged']) && 'on' == $settings['track-logged'])? 'checked' : ''; ?> /></p>
 
