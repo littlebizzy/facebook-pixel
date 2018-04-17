@@ -9,6 +9,7 @@
 class Admin {
 
 
+
 	// Properties
 	// ---------------------------------------------------------------------------------------------------
 
@@ -90,7 +91,7 @@ class Admin {
 		// Load current settings
 		$settings = @json_decode(''.get_option('fbkpxl_settings'), true);
 		if (empty($settings) || !is_array($settings))
-			$settings = array();
+			$settings = [];
 
 		?><div class="wrap">
 
