@@ -7,7 +7,7 @@ namespace LittleBizzy\FacebookPixel\Core;
  * Facebook Pixel - Front class
  *
  * @package Facebook Pixel
- * @subpackage Facebook Pixel Core
+ * @subpackage Core
  */
 class Front {
 
