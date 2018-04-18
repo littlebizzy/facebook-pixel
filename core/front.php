@@ -101,7 +101,7 @@ class Front {
 <noscript>".'<img height="1" width="1" style="display:none"
   src="https://www.facebook.com/tr?id='.esc_attr($this->facebookPixelId).'&ev=PageView&noscript=1"
 /></noscript>
-<!-- End Facebook Pixel Code -->';
+<!-- End Facebook Pixel Code -->'."\n";
 	}
 
 
