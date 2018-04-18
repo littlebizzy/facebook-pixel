@@ -3,9 +3,6 @@
 // Subpackage namespace
 namespace LittleBizzy\FacebookPixel\Core;
 
-// Dependencies
-use LittleBizzy\FacebookPixel\Admin;
-
 /**
  * Core class
  *
@@ -60,13 +57,16 @@ final class Core {
 			return;
 		}
 
+		// Init factory
+		$factory = new Factory($plugin);
+
 		// Admin area
 		if (is_admin()) {
-			new Admin\Admin($plugin);
+			$factory->admin();
 
 		// Front
 		} else {
-			new Front($plugin);
+			$factory->front();
 		}
 	}
 
