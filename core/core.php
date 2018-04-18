@@ -56,6 +56,33 @@ final class Core {
 	 * Constructor
 	 */
 	private function __construct($plugin) {
+		$this->initialize($plugin);
+		$this->checkWPContext();
+	}
+
+
+
+	/**
+	 * Init objects
+	 */
+	public function initialize($plugin) {
+
+		// Copy plugin object
+		$this->plugin = $plugin;
+
+		// Init factory object
+		$this->plugin->factory = new Factory($plugin);
+
+		// Registrar handler object
+		$this->plugin->factory->registrar->setHandler($this);
+	}
+
+
+
+	/**
+	 * Check the current WP context
+	 */
+	public function checkWPContext() {
 
 		// Avoid some contexts
 		if ((defined('DOING_CRON') && DOING_CRON) ||
@@ -63,15 +90,6 @@ final class Core {
 			(defined('XMLRPC_REQUEST') && XMLRPC_REQUEST)) {
 			return;
 		}
-
-		// Copy plugin object
-		$this->plugin = $plugin;
-
-		// Init factory
-		$this->plugin->factory = new Factory($plugin);
-
-		// Registrar handler object
-		$this->plugin->factory->registrar->setHandler($this);
 
 		// Admin area
 		if (is_admin()) {
