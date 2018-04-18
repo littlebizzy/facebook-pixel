@@ -25,6 +25,13 @@ final class Core {
 
 
 
+	/**
+	 * Plugin object
+	 */
+	private $plugin;
+
+
+
 	// Initialization
 	// ---------------------------------------------------------------------------------------------------
 
@@ -57,17 +64,32 @@ final class Core {
 			return;
 		}
 
+		// Copy plugin object
+		$this->plugin = $plugin;
+
 		// Init factory
-		$factory = new Factory($plugin);
+		$this->plugin->factory = new Factory($plugin);
+
+		// Registrar handler object
+		$this->plugin->factory->registrar->setHandler($this);
 
 		// Admin area
 		if (is_admin()) {
-			$factory->admin();
+			$this->plugin->factory->admin();
 
 		// Front
 		} else {
-			$factory->front();
+			$this->plugin->factory->front();
 		}
+	}
+
+
+
+	/**
+	 * On plugin uninstall
+	 */
+	public function onUninstall() {
+		delete_option($this->plugin->prefix.'_settings');
 	}
 
 
