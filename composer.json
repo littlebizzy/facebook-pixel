@@ -1,0 +1,16 @@
+{
+    "name": "littlebizzy/facebook-pixel",
+    "type": "wordpress-plugin",
+    "license": "GPLv3",
+    "homepage": "https://www.littlebizzy.com/plugins/facebook-pixel",
+    "description": "Inserts the Facebook Pixel site-wide just above the closing body tag to ensure fastest performance and to avoid conflicting with any other scripts.",
+    "keywords": ["wordpress","plugin","facebook","pixel","insert","embed","snippet","code","footer"],
+    "support": {
+        "issues": "https://github.com/littlebizzy/facebook-pixel/issues",
+        "forum": "https://www.littlebizzy.com/members"
+    }
+    "require": {
+        "php": "^7.2",
+        "composer/installers": "~1.0"
+    }
+}
